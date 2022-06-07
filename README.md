@@ -10,9 +10,14 @@
 * CUDA 9.0 or higher
 
 I have tested the following versions of OS and softwares：
-* OS：Ubuntu 16.04/18.04
+* OS：Ubuntu 16.04/18.04, Windows 10
 * CUDA: 10.0/10.1/10.2/11.3
 
+## Fixing Error
+1. If you are using window 10, you would get installation error sometime. (Please Make Sure to follow these steps):
+2. You need pytorch of version <1.10; version 1.11 does not have TCH;
+3. Make sure you have only one cuda veriosion installed or mentioned in your PATH;
+4. for some reason, cl does not recognize const double eps=1E-8; on line 24 of poly_nms_cuda.cu throwing an error. As a hack, I have replaced eps with the value 1E-8    at the only two places it is used (the sig function right below), and the whole thing worked for me.
 ## Install 
 **CUDA Driver Version ≥ CUDA Toolkit Version(runtime version) = torch.version.cuda**
 
